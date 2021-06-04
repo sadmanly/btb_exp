@@ -2,6 +2,7 @@
 #include"sha256.h"
 #include"time.h"
 #include<sstream>
+#include<stdlib.h>
 Block::Block(uint32_t nIndexIn, const string& sDataIn) :_nIndex(nIndexIn), _sData(sDataIn)
 //构造函数Block的两个参数为nIndexIn和sDataIn，分别赋值到Block中的_nIndex和_sData（构造函数初始化用法）
 {
@@ -17,12 +18,12 @@ string Block::GetHash()//返回哈希值函数的实现
 void Block::MineBlock(uint32_t nDifficulty)//挖矿函数，参数为难度值。
 {
 	//char cstr[nDifficulty + 1];
-	char cstr[10 + 1];//这个数组实际上设置多大都可以，但是要大于nDifficulty的值
+	char* cstr = (char*)malloc(nDifficulty + 1);
 	for (uint32_t i = 0; i < nDifficulty; ++i)//填充数组，使数组的前nDifficulty位都为0，作为难度。
 	{
 		cstr[i] = '0';
 	}
-	cstr[nDifficulty] = '\0';
+	cstr[nDifficulty] = '\0'
 	string str(cstr);//创建一个string类的对象，初始化为cstr（将字符串数组转换为string类对象）
  
 	do

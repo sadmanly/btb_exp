@@ -2,6 +2,7 @@
 Blockchain::Blockchain()
 {
 	_vChain.emplace_back(Block(0, "Genesis Block"));
+	
 	_nDifficulty = 4;//难度值设置3基本上秒出结果，4可以看出差距，5大约要等2分钟左右。
 }
 void Blockchain::AddBlock(Block bNew)
@@ -15,4 +16,11 @@ void Blockchain::AddBlock(Block bNew)
 Block Blockchain::_GetLastBlock() const
 {
 	return _vChain.back();
+}
+
+Blockchain::~Blockchain()
+{
+
+
+
 }
